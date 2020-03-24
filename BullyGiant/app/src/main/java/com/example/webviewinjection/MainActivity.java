@@ -18,10 +18,12 @@ public class MainActivity extends AppCompatActivity {
         }
         @JavascriptInterface
         public void showMessage(String message) {
-            Toast toast = Toast.makeText(this.activity.getApplicationContext(),
-                    message,
-                    Toast.LENGTH_SHORT);
-            toast.show();
+            for (int i=0; i<5; i++) {
+                Toast toast = Toast.makeText(this.activity.getApplicationContext(),
+                        message,
+                        Toast.LENGTH_LONG);
+                toast.show();
+            }
         }
     }
 
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final WebView mywebview = (WebView) findViewById(R.id.webView);
         mywebview.clearCache(true);
-        mywebview.loadUrl("http://192.168.1.39:31337/home");
+        mywebview.loadUrl("http://192.168.1.38:31337/home");
         mywebview.getSettings().setJavaScriptEnabled(true);
         mywebview.setWebChromeClient(new WebChromeClient());
         mywebview.addJavascriptInterface(new AppJavaScriptProxy(this), "androidAppProxy");
