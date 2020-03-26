@@ -18,4 +18,4 @@ def checkout():
    
 
 if __name__ == '__main__':
-  app.run(debug=True, host="192.168.1.39", port=31337)
+  app.run(debug=True, host="192.168.1.35", port=31337)

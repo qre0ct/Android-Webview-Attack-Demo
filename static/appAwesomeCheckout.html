@@ -3,6 +3,11 @@
   <head>
     <title>AppAwesomeCheckout.html</title>
     <meta charset = "UTF-8" />
+    <script type="text/javascript">
+      function f(){
+        alert(1);
+      }
+    </script>
   </head>
   <body>        
     <form action="/checkout" method="get" name="checkoutForm">      
@@ -14,7 +19,7 @@
                id = "password"
                value = "password goes here" />
       </p>      
-      <input type="submit" value="Submit" name="submit" name="submit">
+      <input type="submit" value="Submit" name="submit" name="submit" onclick="f();">
     </form>    
   </body>
 </html>
