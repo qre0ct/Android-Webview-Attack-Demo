@@ -1,2 +1,2 @@
-1. To run the backend, please update the IP, in the main.py,  with your own IP
-2. Also, run the backend as python main.py from within the backend directory
+1. This is the plain vanila backend that does not return any CSP headers nor has any iframes
+2. To run the backend, please update the IP, in the main.py,  with your own IP
