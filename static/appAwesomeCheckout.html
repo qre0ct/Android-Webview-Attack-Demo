@@ -1,25 +1,20 @@
 <!DOCTYPE HTML>
-<html lang = "en">  
+<html lang = "en">
   <head>
     <title>AppAwesomeCheckout.html</title>
     <meta charset = "UTF-8" />
-    <script type="text/javascript">
-      function f(){
-        alert(1);
-      }
-    </script>
-  </head>
-  <body>        
-    <form action="/checkout" method="get" name="checkoutForm">      
-      <legend><h2>Authenticate Payment</h2></legend>
+ </head>
+  <body>
+    <form action="/checkout" method="get" name="checkoutForm">
+            <legend><h2>Authenticate Payment </h2></legend>
       <p>
         <label>Password</label> &nbsp;
         <input type = "password"
                name = "password"
                id = "password"
                value = "password goes here" />
-      </p>      
-      <input type="submit" value="Submit" name="submit" name="submit" onclick="f();">
-    </form>    
+      </p>
+      <input type="submit" value="Submit" name="submit" name="submit">
+    </form>
   </body>
 </html>
