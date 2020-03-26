@@ -1,4 +1,4 @@
-.DS_Store
+.worktrees
 *.iml
 .gradle
 /local.properties
@@ -14,3 +14,4 @@
 .externalNativeBuild
 .cxx
 .pyc
+.idea
