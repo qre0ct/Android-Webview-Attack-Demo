@@ -10,6 +10,7 @@ app     = Flask(_name_, template_folder=template_dir)
 @app.after_request
 def apply_otherHeaders(response):
     response.headers.set('Cache-Control', "no-cache, max-age=0, must-revalidate, no-store")
+    response.headers.set('X-XSS-Protection', "0")
     return response
 
 @app.route("/home", methods=['GET'])
