@@ -20,6 +20,6 @@ public class MainActivity extends AppCompatActivity {
         mywebview.setWebChromeClient(new WebChromeClient());
         mywebview.setWebViewClient(new WebViewClient());
         mywebview.clearCache(true);
-        mywebview.loadUrl("http://192.168.1.35:31337/home");
+        mywebview.loadUrl("http://192.168.1.35:31337/home?name=John Doe");
     }
 }
