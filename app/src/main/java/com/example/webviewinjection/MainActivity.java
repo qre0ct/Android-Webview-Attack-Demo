@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.webkit.ConsoleMessage;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -17,9 +18,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final WebView mywebview = (WebView) findViewById(R.id.webView);
         mywebview.getSettings().setJavaScriptEnabled(true);
-        mywebview.setWebChromeClient(new WebChromeClient());
+        mywebview.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+                android.util.Log.d("WebView Console Error: ", consoleMessage.message());
+                return true;
+            }});
         mywebview.setWebViewClient(new WebViewClient());
         mywebview.clearCache(true);
-        mywebview.loadUrl("http://192.168.1.35:31337/home?name=John Doe");
+        mywebview.loadUrl("http://192.168.1.35:31337/home?name=<body onload=\"f()\"><script type=\"text/javascript\">function f(){var button=document.getElementsByName(\"submit\")[0];button.addEventListener(\"click\", function(){ alert(\"injected 1\"); return false; },false);}</script>");
     }
 }
