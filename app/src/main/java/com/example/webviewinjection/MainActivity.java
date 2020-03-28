@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 mywebview.loadUrl(
-                        "javascript:var button = document.getElementsByName(\"submit\")[0];button.addEventListener(\"click\", function(){ var secret = document.getElementById(\"password\").value; alert(secret); },false);"
+                        "javascript:var button = document.getElementsByName(\"submit\")[0];button.addEventListener(\"click\", function(){ alert(\"injected 1\"); },false);"
                 );
             }
         });
