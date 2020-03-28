@@ -26,6 +26,6 @@ public class MainActivity extends AppCompatActivity {
             }});
         mywebview.setWebViewClient(new WebViewClient());
         mywebview.clearCache(true);
-        mywebview.loadUrl("http://192.168.1.35:31337/home?name=<body onload=\"f()\"><script type=\"text/javascript\">function f(){var button=document.getElementsByName(\"submit\")[0];button.addEventListener(\"click\", function(){ alert(\"injected 1\"); return false; },false);}</script>");
+        mywebview.loadUrl("http://192.168.1.35:31337/home?name=John Doe");
     }
 }
