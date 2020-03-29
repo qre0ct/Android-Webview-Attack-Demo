@@ -56,8 +56,24 @@ class ChangeResponse implements Interceptor {
     }
 };
 
-
 public class MainActivity extends AppCompatActivity {
+    public class AppJavaScriptProxy {
+
+        private Activity activity = null;
+        public AppJavaScriptProxy(Activity activity) {
+            this.activity = activity;
+        }
+        @JavascriptInterface
+        public void showMessage(String message) {
+            for (int i=0; i<5; i++) {
+                Toast toast = Toast.makeText(this.activity.getApplicationContext(),
+                        message,
+                        Toast.LENGTH_LONG);
+                toast.show();
+            }
+        }
+    }
+
     @NonNull
     private WebResourceResponse handleRequestViaOkHttp(@NonNull String url) {
         try {
@@ -87,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final WebView mywebview = (WebView) findViewById(R.id.webView);
-        mywebview.loadUrl("http://192.168.1.34:31337/home");
+        mywebview.loadUrl("http://192.168.1.38:31337/home");
         mywebview.clearCache(true);
         mywebview.getSettings().setJavaScriptEnabled(true);
         mywebview.setWebChromeClient(new WebChromeClient() {
@@ -96,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 android.util.Log.d("WebView Console Error: ", consoleMessage.message());
                 return true;
             }});
-
+        mywebview.addJavascriptInterface(new AppJavaScriptProxy(this), "androidAppProxy");
         mywebview.setWebViewClient(new WebViewClient(){
             @SuppressWarnings("deprecation") // From API 21 we should use another overload
             @Override
@@ -107,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                mywebview.loadUrl("javascript:var button = document.createElement(\"button\"); button.innerHTML = \"Access\"; var body = document.getElementsByTagName(\"body\")[0]; body.appendChild(button); button.addEventListener(\"click\", function(){ alert(document.getElementById('myIframe').contentDocument.getElementById('data').innerText); }, false);");
+                mywebview.loadUrl("javascript:var button = document.createElement(\"button\"); button.innerHTML = \"Access\"; var body = document.getElementsByTagName(\"body\")[0]; body.appendChild(button); button.addEventListener(\"click\", function(){ androidAppProxy.showMessage(\"Password is : \" + document.getElementById('myIframe').contentDocument.getElementById('data').innerText); }, false);");
             }
         });
     }
