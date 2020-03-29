@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+  <head>
+  	<script type="text/javascript">
+  		function accessIframe()
+  		{
+  			document.getElementById('myIframe').style.background = "green"  			
+  			document.write(document.getElementById('myIframe').contentDocument.getElementById('data').innerText);
+  		}
+  	</script>
+    <title>parent</title>
+    <meta charset = "UTF-8" />
+  </head>
+  <body>
+    <h1>Parent Page</h1>
+      <p>
+        <label>This is the parent page</label><br>
+        Data would be inside iframe
+        <br>
+        <br>
+        <br>
+        <!-- allows access -->
+        <!-- <iframe src="http://192.168.1.34:31337/child?secret=iframeData" frameborder="10" id="myIframe" sandbox="allow-same-origin allow-top-navigation allow-forms allow-popups"> -->
+
+        <!-- allows access -->
+        <!-- <iframe src="http://192.168.1.34:31337/child?secret=iframeData" frameborder="10" id="myIframe" sandbox="allow-scripts allow-same-origin allow-top-navigation allow-forms allow-popups">     -->
+        
+        <!-- does not allow access -->
+        <iframe src="http://192.168.1.34:31337/child?secret=xxxxxx" frameborder="10" id="myIframe" sandbox="allow-scripts allow-top-navigation allow-forms allow-popups">
+		    	
+    	</iframe>       	
+      </p> 
+      <button onclick="accessIframe()">Access</button>
+  </body>
+</html>        
